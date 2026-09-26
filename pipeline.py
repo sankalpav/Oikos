@@ -34,6 +34,7 @@ def load_agencies():
 
 
 REF = json.loads((DATA / "reference.json").read_text())
+STATE_PROGRAMS = json.loads((DATA / "state_programs.json").read_text())
 NURSES = load_nurses()
 AGENCIES = load_agencies()
 SKILLS = sorted({s for row in NURSES.skills for s in row.split(";")})
@@ -241,26 +242,41 @@ def fix_actions(referral, tri):
     return actions
 
 
+def _medicaid_program_gap(elig, fi, p, needs, heavy):
+    """First unmet condition for a state Medicaid home-care program, or None if all are met."""
+    if elig.get("requires_medicaid") and not fi["medi_cal"]:
+        return "Requires Medicaid enrollment"
+    if elig.get("min_age") and p["age"] < elig["min_age"]:
+        return f"Requires age {elig['min_age']}+"
+    if elig.get("requires_heavy_need") and not heavy:
+        return "Requires high care needs (2+ daily activities or cognitive impairment)"
+    if elig.get("requires_any_need") and not needs:
+        return "No daily-living needs documented"
+    return None
+
+
 def home_care(referral, extraction, tri):
     fi, p = referral["family_intake"], referral["patient"]
     needs = extraction.get("adl_needs", [])
     adls = [n for n in needs if n in ADLS]
     iadls = [n for n in needs if n in IADLS]
     heavy = len(adls) >= 2 or extraction.get("cognitive_impairment")
-    county = REF["zips"].get(p["zip"], {}).get("county", "your")
+    zip_info = REF["zips"].get(p["zip"], {})
+    county = zip_info.get("county", "your")
+    state = zip_info.get("state")
     programs, ruled_out = [], []
 
     def add(ok, name, status, why, step, no_reason):
         (programs.append({"name": name, "status": status, "why": why, "next_step": step}) if ok
          else ruled_out.append({"name": name, "reason": no_reason}))
 
-    add(fi["medi_cal"] and bool(needs), "IHSS (In-Home Supportive Services)", "Likely",
-        f"On Medi-Cal and needs help with {', '.join(needs)}.",
-        f"Apply with {county} County IHSS. A family member can enroll as the paid caregiver.",
-        "Requires Medi-Cal" if not fi["medi_cal"] else "No daily-living needs documented")
-    add(fi["medi_cal"] and p["age"] >= 65 and heavy, "Medi-Cal MSSP care management", "Possible",
-        "Age 65+ on Medi-Cal with high care needs.", "Ask the county Area Agency on Aging for an MSSP screening.",
-        "Requires Medi-Cal, age 65+, and high care needs")
+    state_entry = STATE_PROGRAMS.get(state, STATE_PROGRAMS["_default"])
+    for prog in state_entry["medicaid_home_care_programs"]:
+        gap = _medicaid_program_gap(prog["eligibility"], fi, p, needs, heavy)
+        add(not gap, prog["name"], prog["status"],
+            prog["why_template"].format(needs=", ".join(needs), county=county),
+            prog["apply_step"].format(county=county), gap)
+
     vet = fi["wartime_veteran"] or fi["surviving_spouse_of_veteran"]
     add(vet and bool(adls), "VA Aid & Attendance", "Possible",
         f"Wartime veteran who needs help with {', '.join(adls)}. Income and asset limits apply.",

@@ -1,0 +1,110 @@
+{
+  "_note": "Medicaid-funded in-home personal care programs, by state. VA Aid & Attendance and long-term care insurance are handled separately in pipeline.py because they're federal/private and don't vary by state. PACE is handled separately via pace_areas in reference.json. Sourced: CA/TX/FL/NY/IL/PA researched directly (state agency sites); all other states fall back to '_default' until mapped. Eligibility gates are simplified generalizations, not verbatim program rules -- verify against the state's current rules before relying on this for a real applicant.",
+  "CA": {
+    "state_name": "California",
+    "medicaid_home_care_programs": [
+      {
+        "name": "IHSS (In-Home Supportive Services)",
+        "status": "Likely",
+        "administering_agency": "County IHSS office",
+        "delivery_model": "county_administered",
+        "eligibility": {"requires_medicaid": true, "requires_any_need": true},
+        "why_template": "On Medi-Cal and needs help with {needs}.",
+        "apply_step": "Apply with {county} County IHSS. A family member can enroll as the paid caregiver."
+      },
+      {
+        "name": "Medi-Cal MSSP care management",
+        "status": "Possible",
+        "administering_agency": "County Area Agency on Aging",
+        "delivery_model": "county_administered",
+        "eligibility": {"requires_medicaid": true, "min_age": 65, "requires_heavy_need": true},
+        "why_template": "Age 65+ on Medi-Cal with high care needs.",
+        "apply_step": "Ask the {county} County Area Agency on Aging for an MSSP screening."
+      }
+    ]
+  },
+  "TX": {
+    "state_name": "Texas",
+    "medicaid_home_care_programs": [
+      {
+        "name": "STAR+PLUS HCBS (Personal Assistance Services)",
+        "status": "Possible",
+        "administering_agency": "Texas HHSC, delivered via a Medicaid managed-care organization (MCO)",
+        "delivery_model": "mco_administered",
+        "eligibility": {"requires_medicaid": true, "requires_any_need": true},
+        "why_template": "On Medicaid and needs help with {needs}.",
+        "apply_step": "Contact your STAR+PLUS managed-care plan to request a Personal Assistance Services (PAS) assessment."
+      }
+    ]
+  },
+  "FL": {
+    "state_name": "Florida",
+    "medicaid_home_care_programs": [
+      {
+        "name": "Statewide Medicaid Managed Care – Long-Term Care (SMMC-LTC)",
+        "status": "Possible",
+        "administering_agency": "Agency for Health Care Administration (AHCA), delivered via a managed-care plan",
+        "delivery_model": "mco_administered",
+        "eligibility": {"requires_medicaid": true, "requires_heavy_need": true},
+        "why_template": "On Medicaid with high care needs; nursing-home level of care confirmed via a CARES assessment.",
+        "apply_step": "Request a CARES assessment through your local Aging and Disability Resource Center, then enroll in an SMMC-LTC plan."
+      }
+    ]
+  },
+  "NY": {
+    "state_name": "New York",
+    "medicaid_home_care_programs": [
+      {
+        "name": "CDPAP (Consumer Directed Personal Assistance Program)",
+        "status": "Possible",
+        "administering_agency": "NYS Dept of Health, via a statewide fiscal intermediary",
+        "delivery_model": "fiscal_intermediary",
+        "eligibility": {"requires_medicaid": true, "requires_any_need": true},
+        "why_template": "On NY Medicaid and needs help with {needs}.",
+        "apply_step": "Enroll through the state's fiscal intermediary (Public Partnerships LLC) to hire a family member or chosen caregiver."
+      }
+    ]
+  },
+  "IL": {
+    "state_name": "Illinois",
+    "medicaid_home_care_programs": [
+      {
+        "name": "Community Care Program (CCP)",
+        "status": "Possible",
+        "administering_agency": "Illinois Department on Aging, via regional Area Agencies on Aging",
+        "delivery_model": "county_administered",
+        "eligibility": {"requires_medicaid": true, "min_age": 60, "requires_any_need": true},
+        "why_template": "Age 60+ on Medicaid and needs help with {needs}.",
+        "apply_step": "Contact your regional Care Coordination Unit for a Determination of Need screening."
+      }
+    ]
+  },
+  "PA": {
+    "state_name": "Pennsylvania",
+    "medicaid_home_care_programs": [
+      {
+        "name": "Community HealthChoices (CHC)",
+        "status": "Possible",
+        "administering_agency": "PA Dept of Human Services, delivered via a managed-care organization",
+        "delivery_model": "mco_administered",
+        "eligibility": {"requires_medicaid": true, "min_age": 21, "requires_heavy_need": true},
+        "why_template": "On Medicaid with high care needs (assistance with multiple daily activities).",
+        "apply_step": "Contact the Independent Enrollment Broker to enroll in a Community HealthChoices plan."
+      }
+    ]
+  },
+  "_default": {
+    "state_name": null,
+    "medicaid_home_care_programs": [
+      {
+        "name": "State Medicaid Home and Community-Based Services (HCBS)",
+        "status": "Possible",
+        "administering_agency": "State Medicaid office",
+        "delivery_model": "unmapped",
+        "eligibility": {"requires_medicaid": true, "requires_any_need": true},
+        "why_template": "On Medicaid and needs help with {needs}; this state's specific program isn't individually mapped yet.",
+        "apply_step": "Contact your state Medicaid office to ask about Home and Community-Based Services (HCBS) waivers or Community First Choice (1915(k))."
+      }
+    ]
+  }
+}
