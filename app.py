@@ -212,9 +212,9 @@ with tab_detail:
                         st.markdown(f"- **{x['name']}**: {x['reason']}")
                 st.markdown(f"### Text to {r['family_intake']['contact']} ({r['family_intake']['relationship']})")
                 with st.container(border=True):
-                    st.markdown(f"💬 {fam['sms']}")
+                    st.markdown("💬 " + fam["sms"].replace("$", "\\$"))
                     st.divider()
-                    st.markdown(fam["plan_markdown"])
+                    st.markdown(fam["plan_markdown"].replace("$", "\\$"))
                 st.caption("Eligibility is an estimate from general program rules; the county, VA, or insurer makes the final decision.")
 
 with tab_impact:
@@ -253,5 +253,5 @@ with tab_impact:
     m[0].metric("Recovered admissions / month", f"{recovered:.0f}")
     m[1].metric("Added agency revenue / year", f"${rev * 12:,.0f}")
     m[2].metric("Home care placements / month", f"{placements:.0f}", f"${placements * fee * 12:,.0f}/yr referral fees")
-    st.caption(f"Assumes ${p.AVG_PAYMENT_PER_PERIOD:,} per 30-day period (MedPAC Dec 2025: $16.0B / 8.3M periods, 2024) "
+    st.caption(f"Assumes \\${p.AVG_PAYMENT_PER_PERIOD:,} per 30-day period (MedPAC Dec 2025: \\$16.0B / 8.3M periods, 2024) "
                f"× {p.AVG_PERIODS_PER_ADMISSION} periods per admission. Excludes billing-capture uplift.")
