@@ -61,18 +61,20 @@ with tab_overview:
 
     st.subheader("The breakdown")
     c = st.columns(4)
-    c[0].metric("Referral acceptance rate", "~30%", "down from ~80% pre-pandemic", delta_color="inverse")
-    c[1].metric("Turn away referrals (staffing)", "77%")
+    c[0].metric("Home health referral acceptance", "~24%", "down from ~46% in 2019", delta_color="inverse")
+    c[1].metric("Faster responders win more referrals", "+22%", "WellSky, self-reported")
     c[2].metric("Referrals, year over year", "+4.6%")
     c[3].metric("Comorbidity burden vs 2019", "+34%")
-    st.caption("Acceptance and staffing: industry reports and a 2023 provider survey. Referral growth and comorbidity "
-               "(Van Walraven index): WellSky network data, Dec 2025.")
+    st.caption("Acceptance rate: WellSky's 2023 Evolution of Care Report (CarePort network, first-party). "
+               "Response-speed advantage: WellSky, Mar 2026 (self-reported, no published methodology). "
+               "Referral growth and comorbidity (Van Walraven index): WellSky network data, Dec 2025.")
 
     st.subheader("Where the money and patients leak")
     c = st.columns(4)
     leaks = [
-        ("1. Slow manual screening", "Coordinators read long discharge packets by hand. The first agency to respond "
-         "wins the referral (~21% higher assignment rate, per team discovery research)."),
+        ("1. Slow manual screening", "Coordinators read long discharge packets by hand. WellSky reports agencies who "
+         "respond first are ~22% more likely to secure the placement (self-reported, no published methodology) — "
+         "Oikos plans to verify this independently with a pilot agency."),
         ("2. Nurse capacity", "Agencies decline referrals they can't staff within the 48-hour start-of-care window, "
          "often without checking the real roster."),
         ("3. Incomplete billing", "Coders see only the intake nurse's short summary, so documented comorbidities never "
@@ -103,13 +105,25 @@ with tab_overview:
         st.markdown(
             "- [MedPAC, Home health update, Dec 2025](https://www.medpac.gov/wp-content/uploads/2025/12/Tab-H-HHA-update-Dec-2025.pdf): "
             "agencies, users, spend, margins\n"
+            "- [WellSky, 2023 Evolution of Care Report, via Home Health Care News](https://homehealthcarenews.com/2023/07/referral-rejection-rates-patient-complexity-in-home-health-care-reaching-all-time-highs/): "
+            "home health referral rejection rose from 54% (2019) to 76% (Dec 2022), avg. referral response time "
+            "~24 min — first-party CarePort network data\n"
             "- [Home Health Care News, Dec 2025](https://homehealthcarenews.com/2025/12/home-health-referrals-increase-4-6-year-over-year-as-patient-complexity-rises/): "
             "referral growth and patient complexity (WellSky data)\n"
-            "- [Luna, referral acceptance rates](https://www.getluna.com/blog/home-health-referral-acceptance-rates): "
-            "~80% to ~30% acceptance, 77% staffing survey (vendor source)\n"
+            "- [Fisher et al., J Am Geriatr Soc](https://www.sciencedirect.com/science/article/pii/S1525861020310513): "
+            "peer-reviewed Medicare claims analysis; home health referral *fulfillment* fell from 66% (2016) to 59% "
+            "(2022) — a related but distinct metric from agency acceptance rate\n"
             "- [McKnight's Home Care](https://www.mcknightshomecare.com/news/home-health-referrals-increase-but-acceptances-decline-report-finds/): "
             "referrals up, acceptances down\n"
-            "- 21% first-responder advantage: team discovery research (not yet independently sourced)"
+            "- [WellSky, \"WellSky Centralizes Post-Acute Referral Intake With Intelligent AI Integration\" (Mar 2026)]"
+            "(https://wellsky.com/wellsky-centralizes-post-acute-referral-intake-with-intelligent-ai-integration/): "
+            "\"providers who respond first are 22% more likely to secure patient placement\" — WellSky's own data, "
+            "no published methodology, sample size, or study design, from a release announcing WellSky's own AI referral "
+            "product. Directionally useful but self-interested; no independent study corroborates the specific magnitude. "
+            "Oikos plans to measure this directly with a pilot agency before treating it as verified.\n"
+            "- Note: an earlier version of this page cited a \"77% of providers cite staffing\" statistic sourced to "
+            "a vendor blog; that figure traces to [ANCOR's 2023 direct-support workforce survey](https://www.ancor.org/wp-content/uploads/2023/12/2023-State-of-Americas-Direct-Support-Workforce-Crisis_Final.pdf), "
+            "which covers IDD/direct-support providers, not home health — removed as a citation error."
         )
 
 with tab_queue:
