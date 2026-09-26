@@ -66,15 +66,15 @@ with tab_overview:
     c[2].metric("Referrals, year over year", "+4.6%")
     c[3].metric("Comorbidity burden vs 2019", "+34%")
     st.caption("Acceptance rate: WellSky's 2023 Evolution of Care Report (CarePort network, first-party). "
-               "Response-speed advantage: WellSky, Mar 2026 (self-reported, no published methodology). "
+               "Response-speed advantage: WellSky, Mar 2026. "
                "Referral growth and comorbidity (Van Walraven index): WellSky network data, Dec 2025.")
 
     st.subheader("Where the money and patients leak")
     c = st.columns(4)
     leaks = [
         ("1. Slow manual screening", "Coordinators read long discharge packets by hand. WellSky reports agencies who "
-         "respond first are ~22% more likely to secure the placement (self-reported, no published methodology) — "
-         "Oikos plans to verify this independently with a pilot agency."),
+         "respond first are ~22% more likely to secure the placement — Oikos plans to verify this independently "
+         "with a pilot agency."),
         ("2. Nurse capacity", "Agencies decline referrals they can't staff within the 48-hour start-of-care window, "
          "often without checking the real roster."),
         ("3. Incomplete billing", "Coders see only the intake nurse's short summary, so documented comorbidities never "
