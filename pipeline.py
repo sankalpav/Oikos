@@ -165,40 +165,44 @@ def estimate_pdgm_impact(referral, missed):
             "per_admission": round(per_period * AVG_PERIODS_PER_ADMISSION)}
 
 
-FAMILY_SYSTEM = (
-    "You write warm, plain-language care plans for families of patients leaving the hospital. 6th-grade reading "
-    "level. Say 'likely' or 'may qualify', never guarantee eligibility. Write in the family's preferred language. "
-    "Lead with the home care options that can help now; mention any skilled follow-up after that. "
-    "Respond with JSON only."
+DISCHARGE_NOTE_SYSTEM = (
+    "You write a short clinical note for a patient's discharge file, addressed to the hospital discharge planner. "
+    "Only the hospital may contact the patient or family directly — this note is not sent to them. Summarize the "
+    "home care options found so the discharge planner can share them with the family, and note the family's "
+    "preferred language so the planner can arrange translated materials or an interpreter if they reach out. "
+    "Say 'likely' or 'may qualify', never guarantee eligibility. Lead with the home care options that can help "
+    "now; mention any skilled follow-up after that. Respond with JSON only."
 )
 
 
-def family_message(referral, hc):
-    shape = {"sms": "under 320 characters", "plan_markdown": "short plan with numbered next steps"}
+def discharge_note(referral, hc):
+    shape = {"note": "short clinical note for the discharge planner's file, with numbered next steps; markdown ok"}
     user = (
-        f"Return JSON matching: {json.dumps(shape)}\nPreferred language: {referral['family_intake']['preferred_language']}\n"
+        f"Return JSON matching: {json.dumps(shape)}\nFamily's preferred language: {referral['family_intake']['preferred_language']}\n"
         f"Patient first name: {referral['patient']['name'].split()[0]}\n"
-        f"Family contact: {referral['family_intake']['contact']} ({referral['family_intake']['relationship']})\n"
+        f"Family contact on file: {referral['family_intake']['contact']} ({referral['family_intake']['relationship']})\n"
         f"Home care options: {json.dumps(hc['programs'])}\nMatched agencies: {json.dumps(hc['agencies'])}\n"
         f"Skilled follow-up note: {hc.get('skilled_followup') or 'none'}"
     )
-    return llm.complete_json(FAMILY_SYSTEM, user)
+    return llm.complete_json(DISCHARGE_NOTE_SYSTEM, user)
 
 
-def family_message_template(referral, hc):
+def discharge_note_template(referral, hc):
     first = referral["patient"]["name"].split()[0]
-    contact = referral["family_intake"]["contact"].split()[0]
-    top = hc["programs"][0] if hc["programs"] else None
-    sms = f"Hi {contact}, this is the intake team. We couldn't start home health for {first}, but we found help"
-    sms += f": {first} {top['status'].lower()} qualifies for {top['name']}. Tap for next steps." if top else ". Tap for next steps."
+    contact = referral["family_intake"]["contact"]
+    relationship = referral["family_intake"]["relationship"]
+    lang = referral["family_intake"]["preferred_language"]
     steps = [f"{i}. **{p['name']}** ({p['status']}): {p['next_step']}" for i, p in enumerate(hc["programs"], 1)]
     if hc["agencies"]:
         a = hc["agencies"][0]
         steps.append(f"{len(steps) + 1}. **Private-pay backup:** {a['name']}, about ${a['hourly_rate']}/hr.")
-    plan = f"### Care plan for {first}\n" + "\n".join(steps)
+    note = f"### Home care options for {first}\n" + ("\n".join(steps) if steps else "No alternative home care programs identified.")
     if hc.get("skilled_followup"):
-        plan += f"\n\n**Important:** {hc['skilled_followup']}"
-    return {"sms": sms, "plan_markdown": plan}
+        note += f"\n\n**Important:** {hc['skilled_followup']}"
+    note += (f"\n\nFamily contact on file: {contact} ({relationship}), preferred language: {lang}. Please share these "
+             "options with the family or arrange an interpreter as needed — Oikos does not contact patients or "
+             "families directly.")
+    return {"note": note}
 
 
 def _run_step(name, live, live_fn, mock_fn, log):
@@ -375,8 +379,8 @@ def run(referral, live=False):
     else:
         hc = home_care(referral, ext, tri)
         out["home_care"] = hc
-        out["family"] = _run_step("Family care plan", live, lambda: family_message(referral, hc),
-                                  lambda: family_message_template(referral, hc), log)
+        out["discharge_note"] = _run_step("Discharge planner note", live, lambda: discharge_note(referral, hc),
+                                          lambda: discharge_note_template(referral, hc), log)
     for d in [ext["primary_diagnosis"]] + ext.get("diagnoses", []) + out.get("billing", {}).get("missed", []):
         d["verified"] = quote_verified(d.get("evidence", ""), referral["discharge_summary"])
     out["seconds"] = round(time.time() - t0, 1)

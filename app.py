@@ -92,8 +92,8 @@ with tab_overview:
          "and matches a real nurse by license, skills, distance and schedule."),
         ("Bill every accepted patient fully", "Surfaces diagnoses missing from the nurse summary, with chart quotes, "
          "for the nurse and coder to confirm."),
-        ("Give every rejection a next step", "Checks home care programs and private-pay agencies, then texts the family "
-         "a plain-language care plan in their language."),
+        ("Give every rejection a next step", "Checks home care programs and private-pay agencies, then adds a note "
+         "to the file for the hospital discharge planner to share with the family."),
     ]):
         with col.container(border=True):
             st.markdown(f"**{title}**")
@@ -206,7 +206,7 @@ with tab_detail:
                 st.caption("Suggestions only. The nurse confirms and the coder codes. Nothing is auto-billed.")
 
             if "home_care" in res:
-                hc, fam = res["home_care"], res["family"]
+                hc, note = res["home_care"], res["discharge_note"]
                 st.markdown("### Home care qualification")
                 if hc["skilled_followup"]:
                     st.warning(hc["skilled_followup"])
@@ -223,12 +223,12 @@ with tab_detail:
                 with st.expander("Checked, not a fit"):
                     for x in hc["ruled_out"]:
                         st.markdown(f"- **{x['name']}**: {x['reason']}")
-                st.markdown(f"### Text to {r['family_intake']['contact']} ({r['family_intake']['relationship']})")
+                st.markdown(f"### Note added to file for {r['referring_facility']}'s discharge planner")
                 with st.container(border=True):
-                    st.markdown("💬 " + fam["sms"].replace("$", "\\$"))
-                    st.divider()
-                    st.markdown(fam["plan_markdown"].replace("$", "\\$"))
-                st.caption("Eligibility is an estimate from general program rules; the county, VA, or insurer makes the final decision.")
+                    st.markdown(note["note"].replace("$", "\\$"))
+                st.caption("Oikos does not contact patients or families directly — only the hospital discharge "
+                           "planner may do that. Eligibility is an estimate from general program rules; the county, "
+                           "VA, or insurer makes the final decision.")
 
 with tab_impact:
     done = [by_id[i] for i in results]
