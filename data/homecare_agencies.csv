@@ -1,0 +1,5 @@
+id,name,zips_served,hourly_rate,accepts_ltc_insurance,languages
+HC1,Golden Gate Companions (synthetic),94110;94112;94103;94014,38,true,English;Cantonese;Spanish
+HC2,Bayside Home Helpers (synthetic),94501;94601;94606;94541,36,true,English;Spanish
+HC3,South Valley Caregivers (synthetic),95020;95037,34,true,English;Spanish
+HC4,Harbor Senior Care (synthetic),94501;94606;94601,40,false,English;Tagalog

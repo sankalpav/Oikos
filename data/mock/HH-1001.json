@@ -1,0 +1,37 @@
+{
+  "extraction": {
+    "summary": "78-year-old woman discharged after ORIF of a right intertrochanteric hip fracture from a fall. Needs skilled nursing for incision care, enoxaparin teaching and diabetes management, plus PT and OT.",
+    "primary_diagnosis": {"name": "Aftercare, closed displaced intertrochanteric fracture of right femur (s/p ORIF)", "icd10": "S72.141D", "evidence": "Closed displaced intertrochanteric fracture of right femur, s/p open reduction internal fixation (ORIF) on 09/22/2026."},
+    "diagnoses": [
+      {"name": "Type 2 diabetes with diabetic polyneuropathy", "icd10": "E11.42", "evidence": "Type 2 diabetes mellitus with diabetic peripheral neuropathy, on insulin glargine 18 units nightly."},
+      {"name": "Chronic kidney disease stage 3b", "icd10": "N18.32", "evidence": "Chronic kidney disease stage 3b, baseline eGFR 38."},
+      {"name": "Major depressive disorder, recurrent", "icd10": "F33.9", "evidence": "Major depressive disorder, recurrent, on sertraline 100 mg daily."},
+      {"name": "Hypertension", "icd10": "I10", "evidence": "Hypertension, on amlodipine 5 mg daily."}
+    ],
+    "homebound": {"value": true, "evidence": "Leaving home requires a considerable and taxing effort and the assistance of another person."},
+    "skilled_need": {"value": true, "evidence": "Skilled nursing for incision care, enoxaparin injection teaching, diabetes management and medication reconciliation."},
+    "services": [
+      {"discipline": "RN", "skills": ["wound care", "anticoagulation"]},
+      {"discipline": "PT", "skills": ["gait training", "fall prevention"]},
+      {"discipline": "OT", "skills": ["ADL training"]}
+    ],
+    "face_to_face_documented": {"value": true, "evidence": "Performed by Dr. R. Okafor on 09/25/2026; findings support homebound status and the need for skilled nursing and therapy."},
+    "adl_needs": ["bathing", "dressing"],
+    "cognitive_impairment": false
+  },
+  "billing": {
+    "missed": [
+      {"name": "Type 2 diabetes with diabetic polyneuropathy", "icd10": "E11.42", "evidence": "Type 2 diabetes mellitus with diabetic peripheral neuropathy, on insulin glargine 18 units nightly.", "why_it_matters": "Active comorbidity driving insulin management visits and fall risk; absent from nurse summary."},
+      {"name": "Long-term (current) use of insulin", "icd10": "Z79.4", "evidence": "on insulin glargine 18 units nightly", "why_it_matters": "Required secondary code with insulin-treated type 2 diabetes."},
+      {"name": "Type 2 diabetes with diabetic CKD + CKD stage 3b", "icd10": "E11.22 + N18.32", "evidence": "Chronic kidney disease stage 3b, baseline eGFR 38.", "why_it_matters": "ICD-10 'with' convention presumes a diabetes-CKD link unless the provider documents another cause."},
+      {"name": "Hypertensive CKD (replaces I10)", "icd10": "I12.9", "evidence": "Hypertension, on amlodipine 5 mg daily.", "why_it_matters": "Hypertension with CKD is presumed hypertensive CKD; nurse summary would lead coder to I10 only."},
+      {"name": "Major depressive disorder, recurrent", "icd10": "F33.9", "evidence": "Major depressive disorder, recurrent, on sertraline 100 mg daily.", "why_it_matters": "Documented, treated condition relevant to the plan of care; absent from nurse summary."}
+    ],
+    "coding_notes": [
+      "Nurse summary lists only hypertension as a comorbidity, so the coder would miss 4 documented conditions.",
+      "Several of these diagnoses fall in PDGM comorbidity subgroups; coder should verify the comorbidity adjustment tier.",
+      "All suggestions need clinician confirmation at the start-of-care visit before coding."
+    ],
+    "nurse_query": "The discharge summary documents type 2 diabetes with peripheral neuropathy on insulin glargine (A1c 8.9%), CKD stage 3b (eGFR 38) and recurrent major depression on sertraline. Please confirm at the start-of-care visit and document in the OASIS and plan of care if clinically accurate."
+  }
+}

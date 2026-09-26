@@ -1,0 +1,67 @@
+[
+  {
+    "id": "HH-1001",
+    "received_at": "2026-09-26T09:12",
+    "discharge_datetime": "2026-09-26T14:00",
+    "referring_facility": "Mission Bay Medical Center (synthetic)",
+    "facility_type": "Hospital",
+    "patient": {"name": "Eleanor Park", "age": 78, "sex": "F", "zip": "94110"},
+    "payer_id": "medicare_ffs",
+    "manual": {"decision": "accept", "minutes_to_decision": 190, "note": "Accepted after 3 hrs; nurse summary sent to coder"},
+    "family_intake": {"contact": "David Park", "relationship": "son", "preferred_language": "English", "medi_cal": false, "wartime_veteran": false, "surviving_spouse_of_veteran": false, "ltc_insurance": false, "lives_alone": false},
+    "discharge_summary": "DISCHARGE SUMMARY (SYNTHETIC)\nPatient: Eleanor Park   Age: 78   Sex: F\nAdmit: 09/21/2026   Discharge: 09/26/2026\nAttending: Dr. R. Okafor, Orthopedics\n\nPrincipal diagnosis: Closed displaced intertrochanteric fracture of right femur, s/p open reduction internal fixation (ORIF) on 09/22/2026.\n\nHospital course: Presented after a mechanical fall at home. ORIF was uncomplicated. Incision clean, dry and intact with staples in place; staple removal due 10/06/2026. Started enoxaparin 40 mg subcutaneous daily x 28 days for DVT prophylaxis. Pain controlled with acetaminophen and oxycodone 2.5 mg PRN.\n\nPast medical history:\n- Type 2 diabetes mellitus with diabetic peripheral neuropathy, on insulin glargine 18 units nightly. A1c 8.9% on 09/21/2026. Reports numbness in both feet; monofilament sensation decreased bilaterally.\n- Chronic kidney disease stage 3b, baseline eGFR 38.\n- Major depressive disorder, recurrent, on sertraline 100 mg daily.\n- Hypertension, on amlodipine 5 mg daily.\n\nFunctional status: Ambulates 40 feet with front-wheeled walker and contact guard assist. Requires assistance with lower body dressing and bathing. Leaving home requires a considerable and taxing effort and the assistance of another person.\n\nDisposition: Home with home health. Lives with husband (age 81) in a second-floor apartment with elevator.\n\nHome health orders: Skilled nursing for incision care, enoxaparin injection teaching, diabetes management and medication reconciliation. Physical therapy for gait training and fall prevention. Occupational therapy evaluation for ADLs.\n\nFace-to-face encounter: Performed by Dr. R. Okafor on 09/25/2026; findings support homebound status and the need for skilled nursing and therapy.\n\nFollow-up: Orthopedic clinic 10/06/2026.",
+    "nurse_summary": "78F s/p R hip ORIF after fall. Needs SN for incision care + Lovenox teaching, PT/OT. HTN. Walker, homebound. Lives w/ husband. OK to accept."
+  },
+  {
+    "id": "HH-1002",
+    "received_at": "2026-09-26T10:05",
+    "discharge_datetime": "2026-09-26T16:00",
+    "referring_facility": "Lakeshore Community Hospital (synthetic)",
+    "facility_type": "Hospital",
+    "patient": {"name": "Walter Brooks", "age": 82, "sex": "M", "zip": "94601"},
+    "payer_id": "suncoast_ma",
+    "manual": {"decision": "decline", "minutes_to_decision": 240, "note": "Declined: MA auth + missing face-to-face, too much back-and-forth"},
+    "family_intake": {"contact": "Denise Brooks", "relationship": "daughter", "preferred_language": "English", "medi_cal": false, "wartime_veteran": false, "surviving_spouse_of_veteran": false, "ltc_insurance": false, "lives_alone": false},
+    "discharge_summary": "DISCHARGE SUMMARY (SYNTHETIC)\nPatient: Walter Brooks   Age: 82   Sex: M\nAdmit: 09/22/2026   Discharge: 09/26/2026\nAttending: Dr. L. Fernandez, Hospital Medicine\n\nPrincipal diagnosis: Acute on chronic diastolic (HFpEF) heart failure exacerbation.\n\nHospital course: Admitted with 9 lb weight gain, bilateral leg edema and dyspnea. Diuresed with IV furosemide, transitioned to oral furosemide 40 mg twice daily. Discharge weight 212 lb. Echo: EF 60%, grade II diastolic dysfunction.\n\nPast medical history:\n- COPD, on home oxygen 2 L via nasal cannula at night and with exertion.\n- Persistent atrial fibrillation, rate controlled on metoprolol; anticoagulated with apixaban 5 mg twice daily.\n- Hypertension.\n- Obesity, BMI 36.\n\nSkin: Nursing documented a stage 2 pressure injury of the sacrum on 09/24/2026, 2 x 1.5 cm, partial thickness, no tunneling. Foam dressing applied.\n\nFunctional status: Short of breath after walking 20 feet; uses a rollator and oxygen. Leaving home requires a taxing effort and the help of his daughter.\n\nDisposition: Home with home health. Lives with daughter.\n\nHome health orders: Skilled nursing for heart failure monitoring, daily weights, diuretic and medication teaching, and wound care to sacral pressure injury. Physical therapy for endurance and safe mobility.\n\nFace-to-face encounter: To be completed at PCP follow-up visit; not documented during this admission.\n\nFollow-up: PCP within 7 days; cardiology in 2 weeks.",
+    "nurse_summary": "82M CHF exacerbation. Needs SN for CHF teaching + daily weights, PT. On O2. MA plan - needs auth. F2F missing. Pending."
+  },
+  {
+    "id": "HH-1003",
+    "received_at": "2026-09-26T08:40",
+    "discharge_datetime": "2026-09-26T14:00",
+    "referring_facility": "South Valley Rehab Center (synthetic)",
+    "facility_type": "SNF",
+    "patient": {"name": "Rosa Delgado", "age": 86, "sex": "F", "zip": "95020"},
+    "payer_id": "medicare_ffs",
+    "manual": {"decision": "decline", "minutes_to_decision": 200, "note": "Declined: no wound-vac nurse in South County this week"},
+    "family_intake": {"contact": "Marisol Delgado", "relationship": "daughter", "preferred_language": "Spanish", "medi_cal": true, "wartime_veteran": false, "surviving_spouse_of_veteran": false, "ltc_insurance": false, "lives_alone": false},
+    "discharge_summary": "SNF DISCHARGE SUMMARY (SYNTHETIC)\nPatient: Rosa Delgado   Age: 86   Sex: F\nSNF stay: 09/05/2026 - 09/26/2026 (after hospitalization for sepsis from urinary tract infection)\nAttending: Dr. S. Patel\n\nPrimary reason for home health: Stage 3 pressure ulcer of the right heel, 3 x 2.5 cm, on negative pressure wound therapy (wound vac) with dressing changes three times weekly.\n\nOther diagnoses:\n- Alzheimer's disease, moderate stage; oriented to self only, requires cueing for all tasks.\n- Type 2 diabetes mellitus, diet controlled.\n- History of urinary tract infection with sepsis, resolved; completed antibiotics 09/12/2026.\n\nFunctional status: Transfers with one-person assist. Requires help with bathing, dressing, toileting and meals. Leaving home requires the assistance of another person and a wheelchair.\n\nDisposition: Home with daughter, who is the primary caregiver and works part time.\n\nHome health orders: Skilled nursing for negative pressure wound therapy and wound assessment three times weekly; caregiver teaching for pressure injury prevention.\n\nFace-to-face encounter: Completed by Dr. S. Patel on 09/24/2026; supports homebound status and skilled nursing need.",
+    "nurse_summary": "86F heel ulcer on wound vac, dementia. Needs RN w/ NPWT 3x/wk. Gilroy - outside our usual area."
+  },
+  {
+    "id": "HH-1004",
+    "received_at": "2026-09-26T11:30",
+    "discharge_datetime": "2026-09-26T17:00",
+    "referring_facility": "Bayview Medical Center (synthetic)",
+    "facility_type": "Hospital",
+    "patient": {"name": "Harold Jensen", "age": 79, "sex": "M", "zip": "94501"},
+    "payer_id": "medicare_ffs",
+    "manual": {"decision": "decline", "minutes_to_decision": 150, "note": "Declined: not homebound, no skilled need"},
+    "family_intake": {"contact": "Karen Jensen", "relationship": "daughter (lives out of state)", "preferred_language": "English", "medi_cal": false, "wartime_veteran": true, "surviving_spouse_of_veteran": false, "ltc_insurance": false, "lives_alone": true},
+    "discharge_summary": "DISCHARGE SUMMARY (SYNTHETIC)\nPatient: Harold Jensen   Age: 79   Sex: M\nAdmit: 09/23/2026   Discharge: 09/26/2026\nAttending: Dr. M. Chen, Hospital Medicine\n\nPrincipal diagnosis: Community-acquired pneumonia, right lower lobe, resolved.\n\nHospital course: Treated with IV ceftriaxone and azithromycin, transitioned to oral antibiotics and completed course in hospital. Afebrile for 48 hours, oxygen saturation 96% on room air.\n\nPast medical history: Hypertension. Benign prostatic hyperplasia. Army veteran, served in Vietnam 1968-1970.\n\nFunctional status: PT evaluation on 09/25/2026: ambulates 300 feet independently without a device; independent with stairs. Patient is not homebound. No skilled nursing or therapy needs identified.\n\nSocial: Lives alone. Case manager notes general deconditioning; patient reports difficulty bathing safely, preparing meals and keeping up with housekeeping since his wife passed away last year.\n\nDisposition: Home. Hospitalist requested home health evaluation; case manager recommends non-medical in-home support.",
+    "nurse_summary": "79M PNA resolved. Independent 300 ft, not homebound, no skilled need. Decline."
+  },
+  {
+    "id": "HH-1005",
+    "received_at": "2026-09-26T09:55",
+    "discharge_datetime": "2026-09-26T15:00",
+    "referring_facility": "Mission Bay Medical Center (synthetic)",
+    "facility_type": "Hospital",
+    "patient": {"name": "Linda Chen", "age": 62, "sex": "F", "zip": "94112"},
+    "payer_id": "blueridge_ppo",
+    "manual": {"decision": "decline", "minutes_to_decision": 210, "note": "Declined: out-of-network commercial plan"},
+    "family_intake": {"contact": "Michael Chen", "relationship": "husband", "preferred_language": "English", "medi_cal": false, "wartime_veteran": false, "surviving_spouse_of_veteran": false, "ltc_insurance": true, "lives_alone": false},
+    "discharge_summary": "DISCHARGE SUMMARY (SYNTHETIC)\nPatient: Linda Chen   Age: 62   Sex: F\nAdmit: 09/18/2026   Discharge: 09/26/2026\nAttending: Dr. A. Gupta, Neurology\n\nPrincipal diagnosis: Acute ischemic stroke, right middle cerebral artery territory, with left-sided hemiparesis.\n\nHospital course: Received thrombolysis within window. MRI confirmed right MCA infarct. Started aspirin and atorvastatin 80 mg. Speech-language pathology identified mild oropharyngeal dysphagia; on mechanical soft diet with thin liquids.\n\nPast medical history: Hyperlipidemia. Type 2 diabetes mellitus on metformin.\n\nFunctional status: Transfers with moderate assist. Walks 15 feet with hemi-walker and assistance. Requires help with bathing, dressing, toileting and transfers. Leaving home requires the assistance of another person and a wheelchair.\n\nDisposition: Home with husband. Still employed; covered by employer PPO plan.\n\nHome health orders: Skilled nursing for stroke education, blood sugar and medication management. Physical therapy, occupational therapy, and speech-language pathology for dysphagia.\n\nFace-to-face encounter: Completed by Dr. A. Gupta on 09/25/2026; supports homebound status and skilled need.",
+    "nurse_summary": "62F R MCA stroke, L hemiparesis. Needs SN, PT/OT/SLP. BlueRidge PPO - not contracted."
+  }
+]

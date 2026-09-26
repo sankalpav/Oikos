@@ -1,0 +1,10 @@
+id,name,license,skills,home_zip,max_radius_miles,next_open_slot,visits_left_this_week
+N01,Ana Reyes,RN,wound care;anticoagulation;diabetes;ortho,94110,10,2026-09-27T09:00,6
+N02,James Okoye,PT,ortho;gait training;fall prevention,94112,12,2026-09-27T13:00,5
+N03,Mei Tanaka,OT,ADL training;ortho,94103,10,2026-09-28T10:00,4
+N04,Grace Mensah,RN,cardiac;heart failure;wound care;COPD;anticoagulation,94606,10,2026-09-27T10:00,5
+N05,Luis Ortega,PT,cardiopulmonary;gait training,94541,15,2026-09-28T11:00,6
+N06,Priya Nair,RN,wound care;NPWT;dementia,95037,15,2026-09-29T15:00,3
+N07,Tom Walsh,LVN,medication management;diabetes,94014,10,2026-09-27T08:00,7
+N08,Sofia Ramirez,SLP,dysphagia;stroke;aphasia,94112,10,2026-09-27T15:00,4
+N09,Kevin Lee,RN,stroke;neuro;diabetes,94112,10,2026-09-27T11:00,5

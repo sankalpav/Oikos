@@ -1,0 +1,23 @@
+{
+  "payers": {
+    "medicare_ffs": {"name": "Original Medicare", "type": "Medicare FFS", "contracted": true, "prior_auth": false},
+    "suncoast_ma": {"name": "SunCoast Medicare Advantage (synthetic)", "type": "Medicare Advantage", "contracted": true, "prior_auth": true},
+    "blueridge_ppo": {"name": "BlueRidge Employer PPO (synthetic)", "type": "Commercial", "contracted": false, "prior_auth": true}
+  },
+  "zips": {
+    "94110": {"lat": 37.7486, "lon": -122.4156, "county": "San Francisco"},
+    "94112": {"lat": 37.7202, "lon": -122.4430, "county": "San Francisco"},
+    "94103": {"lat": 37.7725, "lon": -122.4097, "county": "San Francisco"},
+    "94014": {"lat": 37.6879, "lon": -122.4520, "county": "San Mateo"},
+    "94606": {"lat": 37.7924, "lon": -122.2430, "county": "Alameda"},
+    "94601": {"lat": 37.7766, "lon": -122.2170, "county": "Alameda"},
+    "94541": {"lat": 37.6737, "lon": -122.0870, "county": "Alameda"},
+    "94501": {"lat": 37.7707, "lon": -122.2641, "county": "Alameda"},
+    "95037": {"lat": 37.1305, "lon": -121.6544, "county": "Santa Clara"},
+    "95020": {"lat": 37.0058, "lon": -121.5683, "county": "Santa Clara"}
+  },
+  "pace_areas": {
+    "SF PACE program (synthetic)": ["94110", "94112", "94103"],
+    "East Bay PACE program (synthetic)": ["94601", "94606", "94501"]
+  }
+}

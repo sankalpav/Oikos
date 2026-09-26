@@ -1,0 +1,38 @@
+{
+  "extraction": {
+    "summary": "82-year-old man discharged after an acute on chronic HFpEF exacerbation, with COPD on home oxygen, AFib on apixaban and a stage 2 sacral pressure injury. Needs skilled nursing for HF monitoring and wound care, plus PT.",
+    "primary_diagnosis": {"name": "Acute on chronic diastolic heart failure", "icd10": "I50.33", "evidence": "Acute on chronic diastolic (HFpEF) heart failure exacerbation."},
+    "diagnoses": [
+      {"name": "COPD", "icd10": "J44.9", "evidence": "COPD, on home oxygen 2 L via nasal cannula at night and with exertion."},
+      {"name": "Persistent atrial fibrillation", "icd10": "I48.19", "evidence": "Persistent atrial fibrillation, rate controlled on metoprolol; anticoagulated with apixaban 5 mg twice daily."},
+      {"name": "Pressure injury of sacrum, stage 2", "icd10": "L89.152", "evidence": "stage 2 pressure injury of the sacrum"},
+      {"name": "Hypertension", "icd10": "I10", "evidence": "Hypertension."},
+      {"name": "Obesity, BMI 36", "icd10": "E66.9", "evidence": "Obesity, BMI 36."}
+    ],
+    "homebound": {"value": true, "evidence": "Leaving home requires a taxing effort and the help of his daughter."},
+    "skilled_need": {"value": true, "evidence": "Skilled nursing for heart failure monitoring, daily weights, diuretic and medication teaching, and wound care to sacral pressure injury."},
+    "services": [
+      {"discipline": "RN", "skills": ["heart failure", "wound care"]},
+      {"discipline": "PT", "skills": ["cardiopulmonary", "gait training"]}
+    ],
+    "face_to_face_documented": {"value": false, "evidence": "To be completed at PCP follow-up visit; not documented during this admission."},
+    "adl_needs": [],
+    "cognitive_impairment": false
+  },
+  "billing": {
+    "missed": [
+      {"name": "COPD", "icd10": "J44.9", "evidence": "COPD, on home oxygen 2 L via nasal cannula at night and with exertion.", "why_it_matters": "Nurse noted oxygen but not the diagnosis; COPD is an active comorbidity."},
+      {"name": "Dependence on supplemental oxygen", "icd10": "Z99.81", "evidence": "on home oxygen 2 L via nasal cannula", "why_it_matters": "Status code supporting respiratory monitoring."},
+      {"name": "Persistent atrial fibrillation + long-term anticoagulant", "icd10": "I48.19 + Z79.01", "evidence": "Persistent atrial fibrillation, rate controlled on metoprolol; anticoagulated with apixaban 5 mg twice daily.", "why_it_matters": "High-risk medication management and bleeding monitoring; absent from nurse summary."},
+      {"name": "Pressure injury of sacrum, stage 2", "icd10": "L89.152", "evidence": "stage 2 pressure injury of the sacrum", "why_it_matters": "Ordered wound care with no matching diagnosis in the nurse summary."},
+      {"name": "Hypertensive heart disease with heart failure", "icd10": "I11.0", "evidence": "Hypertension.", "why_it_matters": "Hypertension with heart failure is presumed linked; I11.0 should be sequenced with I50.33."},
+      {"name": "Obesity + BMI 36", "icd10": "E66.9 + Z68.36", "evidence": "Obesity, BMI 36.", "why_it_matters": "Clinician-documented obesity allows the BMI code."}
+    ],
+    "coding_notes": [
+      "Nurse summary captures heart failure only; 6 documented conditions would be missed.",
+      "The stage 2 sacral pressure injury is in the orders but not the summary, so wound visits could lack a supporting diagnosis.",
+      "Coder to verify PDGM comorbidity adjustment; clinician must confirm each item at start of care."
+    ],
+    "nurse_query": "The discharge summary documents COPD on home O2, persistent AFib on apixaban, a stage 2 sacral pressure injury (2 x 1.5 cm) and obesity (BMI 36). Please confirm and document at start of care; wound measurements are needed for the plan of care."
+  }
+}

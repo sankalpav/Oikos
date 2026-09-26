@@ -1,0 +1,16 @@
+{
+  "extraction": {
+    "summary": "79-year-old man recovered from community-acquired pneumonia; independent with walking and not homebound. Lives alone and struggles with bathing, meals and housekeeping.",
+    "primary_diagnosis": {"name": "Community-acquired pneumonia, resolved", "icd10": "J18.9", "evidence": "Community-acquired pneumonia, right lower lobe, resolved."},
+    "diagnoses": [
+      {"name": "Hypertension", "icd10": "I10", "evidence": "Hypertension."},
+      {"name": "Benign prostatic hyperplasia", "icd10": "N40.0", "evidence": "Benign prostatic hyperplasia."}
+    ],
+    "homebound": {"value": false, "evidence": "Patient is not homebound."},
+    "skilled_need": {"value": false, "evidence": "No skilled nursing or therapy needs identified."},
+    "services": [],
+    "face_to_face_documented": {"value": false, "evidence": ""},
+    "adl_needs": ["bathing", "meal preparation", "housekeeping"],
+    "cognitive_impairment": false
+  }
+}

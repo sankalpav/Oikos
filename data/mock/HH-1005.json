@@ -1,0 +1,22 @@
+{
+  "extraction": {
+    "summary": "62-year-old woman after a right MCA ischemic stroke with left hemiparesis and mild dysphagia. Needs skilled nursing plus PT, OT and speech therapy.",
+    "primary_diagnosis": {"name": "Hemiplegia following cerebral infarction, left non-dominant side", "icd10": "I69.354", "evidence": "Acute ischemic stroke, right middle cerebral artery territory, with left-sided hemiparesis."},
+    "diagnoses": [
+      {"name": "Dysphagia following cerebral infarction", "icd10": "I69.391", "evidence": "mild oropharyngeal dysphagia"},
+      {"name": "Type 2 diabetes", "icd10": "E11.9", "evidence": "Type 2 diabetes mellitus on metformin."},
+      {"name": "Hyperlipidemia", "icd10": "E78.5", "evidence": "Hyperlipidemia."}
+    ],
+    "homebound": {"value": true, "evidence": "Leaving home requires the assistance of another person and a wheelchair."},
+    "skilled_need": {"value": true, "evidence": "Skilled nursing for stroke education, blood sugar and medication management."},
+    "services": [
+      {"discipline": "RN", "skills": ["stroke", "diabetes"]},
+      {"discipline": "PT", "skills": ["gait training"]},
+      {"discipline": "OT", "skills": ["ADL training"]},
+      {"discipline": "SLP", "skills": ["dysphagia"]}
+    ],
+    "face_to_face_documented": {"value": true, "evidence": "Completed by Dr. A. Gupta on 09/25/2026; supports homebound status and skilled need."},
+    "adl_needs": ["bathing", "dressing", "toileting", "transferring"],
+    "cognitive_impairment": false
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "extraction": {
+    "summary": "86-year-old woman with moderate Alzheimer's disease leaving a SNF with a stage 3 right heel pressure ulcer on a wound vac. Needs an RN trained in negative pressure wound therapy three times weekly.",
+    "primary_diagnosis": {"name": "Pressure ulcer of right heel, stage 3", "icd10": "L89.613", "evidence": "Stage 3 pressure ulcer of the right heel, 3 x 2.5 cm, on negative pressure wound therapy (wound vac) with dressing changes three times weekly."},
+    "diagnoses": [
+      {"name": "Alzheimer's disease with moderate dementia", "icd10": "G30.9 + F02.B0", "evidence": "Alzheimer's disease, moderate stage; oriented to self only, requires cueing for all tasks."},
+      {"name": "Type 2 diabetes, diet controlled", "icd10": "E11.9", "evidence": "Type 2 diabetes mellitus, diet controlled."}
+    ],
+    "homebound": {"value": true, "evidence": "Leaving home requires the assistance of another person and a wheelchair."},
+    "skilled_need": {"value": true, "evidence": "Skilled nursing for negative pressure wound therapy and wound assessment three times weekly"},
+    "services": [
+      {"discipline": "RN", "skills": ["NPWT", "wound care"]}
+    ],
+    "face_to_face_documented": {"value": true, "evidence": "Completed by Dr. S. Patel on 09/24/2026; supports homebound status and skilled nursing need."},
+    "adl_needs": ["bathing", "dressing", "toileting", "transferring", "meal preparation"],
+    "cognitive_impairment": true
+  }
+}
