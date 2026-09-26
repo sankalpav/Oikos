@@ -75,8 +75,8 @@ with tab_overview:
         ("1. Slow manual screening", "Coordinators read long discharge packets by hand. WellSky reports agencies who "
          "respond first are ~22% more likely to secure the placement — Oikos plans to verify this independently "
          "with a pilot agency."),
-        ("2. Nurse capacity", "Agencies decline referrals they can't staff within the 48-hour start-of-care window, "
-         "often without checking the real roster."),
+        ("2. Nurse capacity", "Medicare requires the first visit within 48 hours of referral or discharge "
+         "(42 CFR 484.55), so agencies decline referrals they can't staff in time."),
         ("3. Incomplete billing", "Coders see only the intake nurse's short summary, so documented comorbidities never "
          "reach the claim."),
         ("4. Dead-end rejections", "Declined patients get no next step, even when they qualify for IHSS, VA benefits, "
@@ -113,6 +113,8 @@ with tab_overview:
             "- [Fisher et al., J Am Geriatr Soc](https://www.sciencedirect.com/science/article/pii/S1525861020310513): "
             "peer-reviewed Medicare claims analysis; home health referral *fulfillment* fell from 66% (2016) to 59% "
             "(2022) — a related but distinct metric from agency acceptance rate\n"
+            "- [42 CFR 484.55(a)(1)](https://www.law.cornell.edu/cfr/text/42/484.55): initial assessment within 48 hours "
+            "of referral or return home\n"
             "- [McKnight's Home Care](https://www.mcknightshomecare.com/news/home-health-referrals-increase-but-acceptances-decline-report-finds/): "
             "referrals up, acceptances down\n"
             "- [WellSky, \"WellSky Centralizes Post-Acute Referral Intake With Intelligent AI Integration\" (Mar 2026)]"
