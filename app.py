@@ -47,7 +47,6 @@ st.markdown("**Accepted patients get billed fully. Rejected patients still get a
 tab_overview, tab_queue, tab_detail, tab_impact = st.tabs(["Overview", "Referral queue", "Referral detail", "Impact"])
 
 with tab_overview:
-    st.header("Home health has a capacity problem, not a demand problem")
     st.markdown("Hospitals and SNFs send more patients home every year. Agencies turn most of them away, "
                 "bill the ones they accept incompletely, and send the rest home with no next step.")
 
