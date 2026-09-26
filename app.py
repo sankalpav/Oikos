@@ -187,6 +187,20 @@ with tab_detail:
                                            for m in b["missed"]]), hide_index=True, width="stretch")
                 for n in b["coding_notes"]:
                     st.markdown(f"- {n}")
+
+                pdgm = b.get("pdgm")
+                if pdgm and not pdgm["applicable"]:
+                    st.caption(f"PDGM billing estimate: not applicable — {pdgm['reason']}")
+                elif pdgm and not pdgm["tier"]:
+                    st.caption(f"PDGM billing estimate: \\$0 — {pdgm['note']}")
+                elif pdgm:
+                    st.markdown(f"**Estimated PDGM impact: +\\${pdgm['per_period']:,}/30-day period** "
+                                f"(~\\${pdgm['per_admission']:,}/admission)")
+                    st.caption(f"{pdgm['tier'].title()} comorbidity adjustment from: {', '.join(pdgm['subgroups'])}. "
+                              "Illustrative estimate only — uses the CY2026 base rate and example adjustment "
+                              "percentages; actual payment depends on the full PDGM case-mix calculation (admission "
+                              "source, timing, clinical group, functional level), which this demo does not model.")
+
                 st.markdown("**Query to start-of-care nurse**")
                 st.info(b["nurse_query"])
                 st.caption("Suggestions only. The nurse confirms and the coder codes. Nothing is auto-billed.")

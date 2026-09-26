@@ -3,7 +3,7 @@
 Every referral gets a next step: accepted patients get billed fully, rejected patients still get a care plan.
 
 1. **Intake triage**: an LLM reads the discharge packet, then rules check insurance, skilled need, homebound status, face-to-face, and match a nurse (license, skills, radius, 48-hr start of care).
-2. **Billing capture** (accept/fixable): diagnoses in the chart but missing from the nurse summary, with verified quotes and a nurse query.
+2. **Billing capture** (accept/fixable): diagnoses in the chart but missing from the nurse summary, with verified quotes and a nurse query, plus a rule-based (non-LLM) estimated dollar impact from PDGM comorbidity adjustments, when the payer is Medicare FFS.
 3. **Home care qualification** (declined): IHSS, MSSP, VA Aid & Attendance, PACE, LTC insurance, private-pay agencies, plus a family text and care plan.
 
 All data in `data/` is synthetic.
@@ -30,7 +30,8 @@ If a live call fails, that step falls back to the cached output and the reason i
 
 ## Files
 
-- `pipeline.py`: extraction, triage rules, nurse matching, billing, home care rules
+- `pipeline.py`: extraction, triage rules, nurse matching, billing, home care rules, PDGM comorbidity dollar estimate
 - `llm.py`: Bedrock OpenAI-compatible Responses API client
 - `app.py`: Streamlit UI (queue, referral detail, impact)
 - `data/`: referrals, nurse roster, agencies, payers, zips, PACE areas, mock outputs
+- `data/comorbidity_subgroups.json`: small illustrative ICD-10 → PDGM comorbidity subgroup lookup (see its `_caveat` field — not the verbatim CMS list)

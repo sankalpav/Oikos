@@ -2,6 +2,7 @@
 
 import json
 import math
+import re
 import time
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -15,6 +16,15 @@ DATA = Path(__file__).parent / "data"
 # MedPAC Dec 2025: $16.0B FFS spend / 8.3M 30-day periods (2024). Periods per admission is an assumption.
 AVG_PAYMENT_PER_PERIOD = 1928
 AVG_PERIODS_PER_ADMISSION = 1.5
+
+# PDGM comorbidity adjustment (Medicare FFS home health only; CMS-1828-F, CY2026 HH PPS final rule).
+# Case-mix weight increase relative to no comorbidity adjustment. These are example magnitudes from
+# CMS's published rate tables, not fixed constants -- CMS recalibrates weights (and subgroup lists)
+# every year, so treat any dollar figure derived from them as illustrative, not exact.
+PDGM_BASE_RATE_PER_PERIOD = 2038.22  # CY2026 national 30-day base payment rate
+PDGM_LOW_ADJ_PCT = 0.0601
+PDGM_HIGH_ADJ_PCT = 0.1896  # total vs. no adjustment (low + the additional high-tier increment)
+COMORBIDITY = json.loads((DATA / "comorbidity_subgroups.json").read_text())
 
 ADLS = ["bathing", "dressing", "toileting", "transferring", "eating", "continence"]
 IADLS = ["meal preparation", "housekeeping", "medication reminders", "transportation", "shopping"]
@@ -111,6 +121,47 @@ def billing(referral, extraction):
         f"{json.dumps([extraction['primary_diagnosis']] + extraction['diagnoses'])}"
     )
     return llm.complete_json(BILLING_SYSTEM, user)
+
+
+def _match_comorbidity_subgroup(icd10):
+    for entry in COMORBIDITY["subgroups"]:
+        if icd10.startswith(entry["icd10_prefix"]):
+            return entry
+    return None
+
+
+def estimate_pdgm_impact(referral, missed):
+    """Rule-based (not LLM) estimate of comorbidity-adjustment dollar impact from missed diagnoses.
+    PDGM only prices Medicare FFS home health periods, so this is a no-op for other payers."""
+    payer = REF["payers"].get(referral["payer_id"])
+    if not payer or payer["type"] != "Medicare FFS":
+        return {"applicable": False,
+                "reason": f"{payer['type'] if payer else 'Unknown payer'} — PDGM comorbidity pricing applies to Medicare Fee-for-Service only."}
+
+    matched, subgroups_hit = [], set()
+    for m in missed:
+        for code in re.split(r"\s*\+\s*", m.get("icd10", "")):
+            hit = _match_comorbidity_subgroup(code.strip())
+            if hit:
+                matched.append({"diagnosis": m["name"], "icd10": code.strip(), "subgroup": hit["subgroup"]})
+                subgroups_hit.add(hit["subgroup"])
+
+    if not subgroups_hit:
+        return {"applicable": True, "tier": None, "matched": [], "per_period": 0, "per_admission": 0,
+                "note": "None of the missed diagnoses map to a modeled comorbidity subgroup."}
+
+    tier, interaction = "low", None
+    for pair in COMORBIDITY.get("interaction_pairs", []):
+        a, b = pair["subgroups"]
+        if a in subgroups_hit and b in subgroups_hit:
+            tier, interaction = "high", pair
+            break
+
+    pct = PDGM_HIGH_ADJ_PCT if tier == "high" else PDGM_LOW_ADJ_PCT
+    per_period = round(PDGM_BASE_RATE_PER_PERIOD * pct)
+    return {"applicable": True, "tier": tier, "matched": matched, "subgroups": sorted(subgroups_hit),
+            "interaction": interaction, "per_period": per_period,
+            "per_admission": round(per_period * AVG_PERIODS_PER_ADMISSION)}
 
 
 FAMILY_SYSTEM = (
@@ -303,6 +354,7 @@ def run(referral, live=False):
     if tri["decision"] in ("accept", "fixable"):
         out["billing"] = _run_step("Billing capture", live, lambda: billing(referral, ext),
                                    lambda: mock.get("billing", {"missed": [], "coding_notes": [], "nurse_query": ""}), log)
+        out["billing"]["pdgm"] = estimate_pdgm_impact(referral, out["billing"].get("missed", []))
         out["actions"] = fix_actions(referral, tri)
     else:
         hc = home_care(referral, ext, tri)

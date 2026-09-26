@@ -1,0 +1,25 @@
+{
+  "_caveat": "Illustrative demo mapping only. CMS's actual home health PDGM comorbidity list has ~20 low subgroups and ~98 high-tier interaction pairs, recalibrated annually from claims data. This file covers a small, manually curated subset of ICD-10 prefixes relevant to this demo's mock referrals and is NOT validated against the current CMS list. Do not use for real billing without checking the current CMS PDGM comorbidity subgroup table.",
+  "_excluded_on_purpose": [
+    "Z-codes (e.g. Z79.4 long-term insulin use, Z99.81 oxygen dependence) are status/history codes, not comorbidity diagnoses, and are not modeled here.",
+    "L89.15x (stage 2 pressure injury) is intentionally excluded — only stage 3+ pressure ulcers are modeled as a comorbidity-relevant severity.",
+    "Atrial fibrillation (I48.x), depression (F33.x), and obesity (E66.x) are left unmapped: no sourced confirmation they sit in a CMS subgroup, so they're omitted rather than guessed."
+  ],
+  "subgroups": [
+    {"icd10_prefix": "E11.2", "condition": "Type 2 diabetes with kidney complications", "subgroup": "Endocrine 3", "tier": "low"},
+    {"icd10_prefix": "E11.4", "condition": "Type 2 diabetes with neurological complications", "subgroup": "Endocrine 3", "tier": "low"},
+    {"icd10_prefix": "N18.3", "condition": "Chronic kidney disease, stage 3", "subgroup": "Genitourinary 2", "tier": "low"},
+    {"icd10_prefix": "N18.4", "condition": "Chronic kidney disease, stage 4", "subgroup": "Genitourinary 2", "tier": "low"},
+    {"icd10_prefix": "N18.5", "condition": "Chronic kidney disease, stage 5", "subgroup": "Genitourinary 2", "tier": "low"},
+    {"icd10_prefix": "I12", "condition": "Hypertensive chronic kidney disease", "subgroup": "Genitourinary 2", "tier": "low"},
+    {"icd10_prefix": "I13", "condition": "Hypertensive heart and chronic kidney disease", "subgroup": "Genitourinary 2", "tier": "low"},
+    {"icd10_prefix": "J44", "condition": "Chronic obstructive pulmonary disease", "subgroup": "Respiratory 2", "tier": "low"},
+    {"icd10_prefix": "I50", "condition": "Heart failure", "subgroup": "Circulatory 4", "tier": "low"},
+    {"icd10_prefix": "I11", "condition": "Hypertensive heart disease", "subgroup": "Circulatory 4", "tier": "low"},
+    {"icd10_prefix": "G20", "condition": "Parkinson's disease", "subgroup": "Neuro 5", "tier": "low"},
+    {"icd10_prefix": "L89.6", "condition": "Pressure ulcer, stage 3 or 4 (heel)", "subgroup": "Skin 3", "tier": "low"}
+  ],
+  "interaction_pairs": [
+    {"subgroups": ["Endocrine 3", "Genitourinary 2"], "note": "Diabetes with chronic complications + CKD (diabetic nephropathy pattern)"}
+  ]
+}
