@@ -5,16 +5,21 @@
     "blueridge_ppo": {"name": "BlueRidge Employer PPO (synthetic)", "type": "Commercial", "contracted": false, "prior_auth": true}
   },
   "zips": {
-    "94110": {"lat": 37.7486, "lon": -122.4156, "county": "San Francisco"},
-    "94112": {"lat": 37.7202, "lon": -122.4430, "county": "San Francisco"},
-    "94103": {"lat": 37.7725, "lon": -122.4097, "county": "San Francisco"},
-    "94014": {"lat": 37.6879, "lon": -122.4520, "county": "San Mateo"},
-    "94606": {"lat": 37.7924, "lon": -122.2430, "county": "Alameda"},
-    "94601": {"lat": 37.7766, "lon": -122.2170, "county": "Alameda"},
-    "94541": {"lat": 37.6737, "lon": -122.0870, "county": "Alameda"},
-    "94501": {"lat": 37.7707, "lon": -122.2641, "county": "Alameda"},
-    "95037": {"lat": 37.1305, "lon": -121.6544, "county": "Santa Clara"},
-    "95020": {"lat": 37.0058, "lon": -121.5683, "county": "Santa Clara"}
+    "94110": {"lat": 37.7486, "lon": -122.4156, "county": "San Francisco", "state": "CA"},
+    "94112": {"lat": 37.7202, "lon": -122.4430, "county": "San Francisco", "state": "CA"},
+    "94103": {"lat": 37.7725, "lon": -122.4097, "county": "San Francisco", "state": "CA"},
+    "94014": {"lat": 37.6879, "lon": -122.4520, "county": "San Mateo", "state": "CA"},
+    "94606": {"lat": 37.7924, "lon": -122.2430, "county": "Alameda", "state": "CA"},
+    "94601": {"lat": 37.7766, "lon": -122.2170, "county": "Alameda", "state": "CA"},
+    "94541": {"lat": 37.6737, "lon": -122.0870, "county": "Alameda", "state": "CA"},
+    "94501": {"lat": 37.7707, "lon": -122.2641, "county": "Alameda", "state": "CA"},
+    "95037": {"lat": 37.1305, "lon": -121.6544, "county": "Santa Clara", "state": "CA"},
+    "95020": {"lat": 37.0058, "lon": -121.5683, "county": "Santa Clara", "state": "CA"},
+    "77002": {"lat": 29.7589, "lon": -95.3677, "county": "Harris", "state": "TX"},
+    "33101": {"lat": 25.7743, "lon": -80.1937, "county": "Miami-Dade", "state": "FL"},
+    "10032": {"lat": 40.8417, "lon": -73.9425, "county": "New York", "state": "NY"},
+    "60601": {"lat": 41.8853, "lon": -87.6221, "county": "Cook", "state": "IL"},
+    "19102": {"lat": 39.9526, "lon": -75.1652, "county": "Philadelphia", "state": "PA"}
   },
   "pace_areas": {
     "SF PACE program (synthetic)": ["94110", "94112", "94103"],
